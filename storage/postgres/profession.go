@@ -145,6 +145,10 @@ func (r *professionRepo) GetAll(req *position_service.GetAllProfessionRequest) (
 		professions = append(professions, &profesion)
 	}
 
+	if err := rows.Close(); err != nil {
+		return nil, err
+	}
+
 	return &position_service.GetAllProfessionResponse{
 		Professions: professions,
 		Count:       count,
